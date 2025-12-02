@@ -3,6 +3,7 @@ import { PRODUCTS } from './constants';
 import { ProductCard } from './components/ProductCard';
 import { ParallaxBackground } from './components/ParallaxBackground';
 import { FadeIn } from './components/FadeIn';
+import { JewelryCarousel } from './components/JewelryCarousel';
 import { ChevronDown, ShoppingBag, Menu, Search } from 'lucide-react';
 
 const Navbar: React.FC = () => (
@@ -42,7 +43,7 @@ const Hero: React.FC = () => (
         Handcrafted silver and platinum masterpieces. <br />
         <span className="text-luxury-black mt-2 block">Designed for the modern era.</span>
       </p>
-      
+
       <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
         <button className="px-10 py-4 bg-luxury-black text-white text-xs font-bold uppercase tracking-[0.25em] hover:bg-luxury-slate transition-colors shadow-[0_10px_30px_rgba(0,0,0,0.1)]">
           Shop Collection
@@ -63,23 +64,23 @@ const Hero: React.FC = () => (
 const Footer: React.FC = () => (
   <footer className="bg-slate-50 py-24 px-6 border-t border-luxury-platinum">
     <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12 text-center md:text-left">
-        <div>
-            <div className="text-2xl font-serif text-luxury-black tracking-widest mb-6">
-               LUXE <span className="text-luxury-silver italic">BIJOUX</span>
-            </div>
-            <p className="text-gray-500 text-xs tracking-widest uppercase max-w-sm leading-7">
-                Purveyors of fine silver and platinum since 1924. <br/>
-                Paris • New York • Tokyo
-            </p>
+      <div>
+        <div className="text-2xl font-serif text-luxury-black tracking-widest mb-6">
+          LUXE <span className="text-luxury-silver italic">BIJOUX</span>
         </div>
-        <div className="flex flex-col md:items-end gap-6">
-            <div className="flex gap-8 text-xs text-gray-400 uppercase tracking-[0.2em] font-medium">
-                <a href="#" className="hover:text-luxury-black transition-colors">Concierge</a>
-                <a href="#" className="hover:text-luxury-black transition-colors">Boutiques</a>
-                <a href="#" className="hover:text-luxury-black transition-colors">Legal</a>
-            </div>
-            <p className="text-gray-400 text-[10px] tracking-wider">© 2024 Luxe Bijoux House. All rights reserved.</p>
+        <p className="text-gray-500 text-xs tracking-widest uppercase max-w-sm leading-7">
+          Purveyors of fine silver and platinum since 1924. <br />
+          Paris • New York • Tokyo
+        </p>
+      </div>
+      <div className="flex flex-col md:items-end gap-6">
+        <div className="flex gap-8 text-xs text-gray-400 uppercase tracking-[0.2em] font-medium">
+          <a href="#" className="hover:text-luxury-black transition-colors">Concierge</a>
+          <a href="#" className="hover:text-luxury-black transition-colors">Boutiques</a>
+          <a href="#" className="hover:text-luxury-black transition-colors">Legal</a>
         </div>
+        <p className="text-gray-400 text-[10px] tracking-wider">© 2024 Luxe Bijoux House. All rights reserved.</p>
+      </div>
     </div>
   </footer>
 );
@@ -89,21 +90,21 @@ export default function App() {
     <div className="relative min-h-screen text-luxury-black font-sans selection:bg-luxury-silver selection:text-white">
       <ParallaxBackground />
       <Navbar />
-      
+
       <Hero />
 
       <main className="max-w-[1400px] mx-auto px-6 py-20 md:py-32">
         <div className="flex flex-col md:flex-row items-end justify-between mb-20 border-b border-luxury-platinum pb-8 gap-4">
-            <FadeIn>
-                <h2 className="text-4xl md:text-5xl font-serif text-luxury-black">
-                    Curated <span className="text-luxury-silver italic">Selection</span>
-                </h2>
-            </FadeIn>
-            <FadeIn delay={200}>
-                <span className="text-[10px] uppercase tracking-[0.25em] text-gray-400">
-                   Autumn / Winter 2024
-                </span>
-            </FadeIn>
+          <FadeIn>
+            <h2 className="text-4xl md:text-5xl font-serif text-luxury-black">
+              Curated <span className="text-luxury-silver italic">Selection</span>
+            </h2>
+          </FadeIn>
+          <FadeIn delay={200}>
+            <span className="text-[10px] uppercase tracking-[0.25em] text-gray-400">
+              Autumn / Winter 2024
+            </span>
+          </FadeIn>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-16">
@@ -114,25 +115,29 @@ export default function App() {
           ))}
         </div>
 
+        <FadeIn delay={300} className="mt-20">
+          <JewelryCarousel />
+        </FadeIn>
+
         <FadeIn className="mt-40 mb-20">
-            <div className="relative w-full overflow-hidden bg-slate-100 border border-white group cursor-pointer shadow-lg">
-                {/* Decorative background */}
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-slate-100 to-slate-200 opacity-80"></div>
-                <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-luxury-silver/50 to-transparent"></div>
-                
-                <div className="relative z-10 px-8 py-24 md:py-36 text-center">
-                    <span className="text-[10px] uppercase tracking-[0.4em] text-luxury-slate mb-4 block">The Privilege Club</span>
-                    <h2 className="text-4xl md:text-6xl font-serif mb-8 text-luxury-black">
-                        THE <span className="italic text-luxury-silver">SILVER</span> CIRCLE
-                    </h2>
-                    <p className="text-gray-500 text-sm md:text-base font-light tracking-wide mb-12 max-w-xl mx-auto leading-loose">
-                        Join our exclusive members-only circle for early access to rare platinum acquisitions and private showroom viewings.
-                    </p>
-                    <button className="px-12 py-4 bg-transparent border border-luxury-black text-luxury-black text-xs font-bold uppercase tracking-[0.25em] hover:bg-luxury-black hover:text-white transition-all duration-500">
-                        Request Invitation
-                    </button>
-                </div>
+          <div className="relative w-full overflow-hidden bg-slate-100 border border-white group cursor-pointer shadow-lg">
+            {/* Decorative background */}
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-slate-100 to-slate-200 opacity-80"></div>
+            <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-luxury-silver/50 to-transparent"></div>
+
+            <div className="relative z-10 px-8 py-24 md:py-36 text-center">
+              <span className="text-[10px] uppercase tracking-[0.4em] text-luxury-slate mb-4 block">The Privilege Club</span>
+              <h2 className="text-4xl md:text-6xl font-serif mb-8 text-luxury-black">
+                THE <span className="italic text-luxury-silver">SILVER</span> CIRCLE
+              </h2>
+              <p className="text-gray-500 text-sm md:text-base font-light tracking-wide mb-12 max-w-xl mx-auto leading-loose">
+                Join our exclusive members-only circle for early access to rare platinum acquisitions and private showroom viewings.
+              </p>
+              <button className="px-12 py-4 bg-transparent border border-luxury-black text-luxury-black text-xs font-bold uppercase tracking-[0.25em] hover:bg-luxury-black hover:text-white transition-all duration-500">
+                Request Invitation
+              </button>
             </div>
+          </div>
         </FadeIn>
       </main>
 
