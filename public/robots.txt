@@ -1,0 +1,13 @@
+# Sitemap for Luxe Bijoux
+# Generated: 2024-12-05
+
+User-agent: *
+Allow: /
+
+# Disallow admin and private areas (if any in future)
+Disallow: /admin/
+Disallow: /private/
+Disallow: /*.json$
+
+# Sitemap location
+Sitemap: https://luxebijoux.vn/sitemap.xml

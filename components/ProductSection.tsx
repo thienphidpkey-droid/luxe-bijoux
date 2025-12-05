@@ -2,6 +2,7 @@ import React from 'react';
 import { Product } from '../types';
 import { ProductCard } from './ProductCard';
 import { CategoryBanner } from './CategoryBanner';
+import { VerticalBanner } from './VerticalBanner';
 import { FadeIn } from './FadeIn';
 import { ArrowRight } from 'lucide-react';
 
@@ -9,24 +10,28 @@ interface ProductSectionProps {
     title: string;
     subtitle?: string;
     bannerImage: string;
+    verticalBannerImage?: string;
     products: Product[];
     sectionId?: string;
     onViewAll?: () => void;
+    onProductClick?: (product: Product) => void;
 }
 
 export const ProductSection: React.FC<ProductSectionProps> = ({
     title,
     subtitle,
     bannerImage,
+    verticalBannerImage,
     products,
     sectionId,
-    onViewAll
+    onViewAll,
+    onProductClick
 }) => {
-    // Get first 8 products for display
+    // Get first 8 products for display (4 products x 2 rows)
     const displayProducts = products.slice(0, 8);
 
     return (
-        <section className="mb-32">
+        <section className="mb-2">{/* Minimal spacing ~8px */}
             {/* Category Banner */}
             <FadeIn>
                 <CategoryBanner
@@ -37,24 +42,40 @@ export const ProductSection: React.FC<ProductSectionProps> = ({
                 />
             </FadeIn>
 
-            {/* Products Grid */}
-            <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-16">
+            {/* Products Grid with Vertical Banner */}
+            {/* Desktop: 5 columns total (1 banner + 4 products) | Mobile: 2-3 columns */}
+            <div className="mt-16 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
+                {/* Vertical Banner - Hidden on mobile, takes 1 column and spans exactly 2 rows on desktop */}
+                {verticalBannerImage && (
+                    <div className="hidden lg:block lg:row-span-2">
+                        <VerticalBanner
+                            imageUrl={verticalBannerImage}
+                            title={title}
+                            subtitle="Special Collection"
+                        />
+                    </div>
+                )}
+
+                {/* Products Grid - 2 cols mobile, 3 cols tablet, 4 cols desktop (8 products = 4x2) */}
                 {displayProducts.map((product, index) => (
                     <FadeIn key={product.id} delay={index * 80}>
-                        <ProductCard product={product} />
+                        <ProductCard
+                            product={product}
+                            onClick={() => onProductClick?.(product)}
+                        />
                     </FadeIn>
                 ))}
             </div>
 
-            {/* View All Button */}
+            {/* View All Button - Smaller and closer to products */}
             <FadeIn delay={400}>
-                <div className="mt-16 flex justify-center">
+                <div className="mt-6 flex justify-center">{/* Reduced from mt-16 */}
                     <button
                         onClick={onViewAll}
-                        className="group flex items-center gap-3 px-10 py-4 bg-transparent border-2 border-luxury-black/20 text-luxury-black text-xs font-bold uppercase tracking-[0.25em] hover:bg-luxury-black hover:text-white hover:border-luxury-black transition-all duration-300"
+                        className="group flex items-center gap-2 px-6 py-2 bg-transparent border border-luxury-rose-gold/40 text-luxury-rose-gold text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-luxury-rose-gold hover:text-white hover:border-luxury-rose-gold transition-all duration-300 shadow-sm hover:shadow-md hover:shadow-luxury-rose-gold/20"
                     >
-                        View All {title}
-                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                        Xem tất cả {title}
+                        <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                     </button>
                 </div>
             </FadeIn>

@@ -4,11 +4,15 @@ import { ArrowRight, Gem, Eye } from 'lucide-react';
 
 interface ProductCardProps {
   product: Product;
+  onClick?: () => void;
 }
 
-export const ProductCard: React.FC<ProductCardProps> = React.memo(({ product }) => {
+export const ProductCard: React.FC<ProductCardProps> = React.memo(({ product, onClick }) => {
   return (
-    <div className="group w-full aspect-square perspective-1000 cursor-pointer">
+    <div
+      className="group w-full aspect-square perspective-1000 cursor-pointer"
+      onClick={onClick}
+    >
       <div className="relative w-full h-full duration-700 preserve-3d group-hover:rotate-y-180 transition-transform ease-[cubic-bezier(0.23,1,0.32,1)] shadow-[0_20px_50px_rgba(0,0,0,0.1)]">
 
         {/* Front of Card */}
@@ -35,7 +39,9 @@ export const ProductCard: React.FC<ProductCardProps> = React.memo(({ product }) 
               {product.name}
             </h3>
             <div className="flex items-center gap-4 text-sm font-sans tracking-widest">
-              <span className="text-white font-light">{product.price}</span>
+              <span className="text-white font-bold bg-black/60 backdrop-blur-sm px-4 py-2 rounded-sm border border-white/20 shadow-lg">
+                {product.price}
+              </span>
             </div>
           </div>
         </div>
